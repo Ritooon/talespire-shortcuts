@@ -1,19 +1,56 @@
 $(document).ready(function(){
     loadTheme();
     loadCaracteristics();
+    displayLanguage();
 });
 
 var arrayCaracteristics = [
-    {'carac': 'strength', 'name': 'Force'},
-    {'carac': 'dexterity', 'name': 'Dextérité'},
+    {'carac': 'strength', 'name': 'Strength'},
+    {'carac': 'dexterity', 'name': 'Dexterity'},
     {'carac': 'constitution', 'name': 'Constitution'},
     {'carac': 'intelligence', 'name': 'Intelligence'},
-    {'carac': 'wisdom', 'name': 'Sagesse'},
-    {'carac': 'charisma', 'name': 'Charisme'}
+    {'carac': 'wisdom', 'name': 'Wisdom'},
+    {'carac': 'charisma', 'name': 'Charisma'}
 ];
+
+function displayLanguage()
+{
+    if(typeof localStorage.getItem('lang') == 'undefined' || localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'en')
+    {
+        $('#english-switch').css('display', 'none');
+        $('#french-switch').css('display', 'inline-block');
+
+        arrayCaracteristics = [
+            {'carac': 'strength', 'name': 'Strength'},
+            {'carac': 'dexterity', 'name': 'Dexterity'},
+            {'carac': 'constitution', 'name': 'Constitution'},
+            {'carac': 'intelligence', 'name': 'Intelligence'},
+            {'carac': 'wisdom', 'name': 'Wisdom'},
+            {'carac': 'charisma', 'name': 'Charisma'}
+        ];
+    }
+    else
+    {
+        $('#english-switch').css('display', 'inline-block');
+        $('#french-switch').css('display', 'none');
+
+        arrayCaracteristics = [
+            {'carac': 'strength', 'name': 'Force'},
+            {'carac': 'dexterity', 'name': 'Dextérité'},
+            {'carac': 'constitution', 'name': 'Constitution'},
+            {'carac': 'intelligence', 'name': 'Intelligence'},
+            {'carac': 'wisdom', 'name': 'Sagesse'},
+            {'carac': 'charisma', 'name': 'Charisme'}
+        ];
+    }
+
+    loadCaracteristics();
+}
 
 function loadCaracteristics()
 {
+    $('#shortcuts-container').html('');
+
     arrayCaracteristics.forEach(element => {
         let caraBlock = '<div class="p-0 m-0 col-4 card text-white bg-secondary m-3">';
         caraBlock += '<div class="card-header text-center"><img src="assets/img/'+element.carac+'.png" /> '+element.name;
@@ -89,4 +126,20 @@ function switchTheme(theme)
 
     localStorage.setItem('theme', theme);
     loadTheme();
+}
+
+
+function switchLanguage(lang)
+{
+    if(lang == 'en') { 
+        $('#english-switch').css('display', 'none');
+        $('#french-switch').css('display', 'inline-block');
+    } else {
+        $('#english-switch').css('display', 'inline-block');
+        $('#french-switch').css('display', 'none');
+    }
+
+    localStorage.setItem('lang', lang);
+
+    displayLanguage();
 }
