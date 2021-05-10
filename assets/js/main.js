@@ -20,6 +20,8 @@ function displayLanguage()
         $('#english-switch').css('display', 'none');
         $('#french-switch').css('display', 'inline-block');
 
+        $('h1').html('Shortcuts list');
+
         arrayCaracteristics = [
             {'carac': 'strength', 'name': 'Strength'},
             {'carac': 'dexterity', 'name': 'Dexterity'},
@@ -33,6 +35,8 @@ function displayLanguage()
     {
         $('#english-switch').css('display', 'inline-block');
         $('#french-switch').css('display', 'none');
+
+        $('h1').html('Liste des raccourcis');
 
         arrayCaracteristics = [
             {'carac': 'strength', 'name': 'Force'},
