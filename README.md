@@ -1,4 +1,4 @@
-# 🇬🇧 Talespire-shortcuts
+# ![image](https://user-images.githubusercontent.com/2474167/117669756-8a20eb00-b1a7-11eb-975b-35e9f34b9f51.png) Talespire-shortcuts
 
 ## What is it ? 🤔
 
@@ -20,7 +20,7 @@ Nothing's easier ! On Github, just go there :
 
 Then, on your Windows / Mac OS / Linux computer, unzip, and you open "index.html" with your favorite browser (Chrome, Firefox, Safari, Opera, Brave, (Not IE, seriously ...)) and let's roll !
 
-# 🇫🇷 Talespire-shortcuts
+# ![image](https://user-images.githubusercontent.com/2474167/117669851-a3299c00-b1a7-11eb-9692-57588fee1802.png) Talespire-shortcuts
 
 ## Ca fait quoi ? 🤔
 
