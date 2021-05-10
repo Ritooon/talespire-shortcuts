@@ -1,0 +1,76 @@
+/* General */
+.text-moon { color: #fff283; }
+.text-blood { color: #E84A5F; }
+.text-lightblue { color: #C5E0DC; }
+
+.bg-coral { background-color: #FF847C; }
+
+.ml-4 { margin-left: 1.5rem !important; }
+
+*:focus, *:focus, *:focus{
+    outline: none !important;
+}
+
+.bg-secondary {
+    background-color: #3e4e54!important;
+}
+
+/* Misc */
+#dark-theme-switch, #light-theme-switch { cursor: pointer; }
+
+/* Shortcuts container */
+#shortcuts-container { 
+    margin-top: 2rem; 
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+}
+
+
+#shortcuts-container img { 
+    height: 40px; 
+    margin-right: 1.5rem;
+}
+
+#shortcuts-container input {
+    width: 40px;
+    background: transparent;
+    color: white;
+    border: none;
+    border-bottom: 1px solid white;
+    text-align: right;
+    margin-left: 1.5rem;
+}
+
+/* Dices */
+
+.d4-color { filter: invert(49%) sepia(48%) saturate(3909%) hue-rotate(125deg) brightness(101%) contrast(82%); }
+.d6-color { filter: invert(21%) sepia(66%) saturate(2552%) hue-rotate(315deg) brightness(89%) contrast(90%); }
+.d8-color { filter: invert(16%) sepia(78%) saturate(4573%) hue-rotate(348deg) brightness(107%) contrast(94%); }
+.d10-color { filter: invert(70%) sepia(60%) saturate(4549%) hue-rotate(12deg) brightness(114%) contrast(90%); }
+.d12-color { filter: invert(36%) sepia(45%) saturate(735%) hue-rotate(125deg) brightness(99%) contrast(93%); }
+.d20-color { filter: invert(19%) sepia(74%) saturate(3127%) hue-rotate(344deg) brightness(106%) contrast(107%); }
+
+.launch-dice { 
+    cursor: pointer; 
+    margin-left: 1rem !important;
+}
+
+/* Light theme */
+body.light-theme { background-color: #F9F2E7; }
+body.light-theme .text-lightblue { color: #4ECDC4; }
+
+body.light-theme #shortcuts-container .card {
+    background-color: #efd2a6!important;
+    color: #4e4e4e !important;
+    font-weight: bold;
+}
+
+body.light-theme #shortcuts-container input {
+    color: #4e4e4e;
+    border-bottom: 1px solid #4e4e4e;
+}
+
+/* Dark theme */
+
+body.dark-theme { background-color: #2A363B; }

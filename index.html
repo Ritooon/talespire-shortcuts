@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Talespire shortcuts</title>
+        <link rel="icon" type="image/png" href="assets/img/dice.png" />
+        <link rel="stylesheet" href="assets/css/bootstrap-5.0.0.min.css" />
+        <link rel="stylesheet" href="assets/fontawesome/css/all.css" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+
+    <body>
+
+        <nav class="navbar navbar-dark bg-dark navbar-expand-lg navbar-light bg-light">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                    <img src="assets/img/dice.png" height="35" class="d-inline-block align-text-top">
+                    Talespire-shortcuts
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" 
+                    aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <span class="navbar-text">
+                        <i class="fas fa-moon text-moon" style="display: none;" id="dark-theme-switch" onclick="switchTheme('dark-theme');"></i>
+                    </span>
+
+                    <span class="navbar-text">
+                        <i class="fas fa-sun text-moon" style="display: none;" id="light-theme-switch" onclick="switchTheme('light-theme');"></i>
+                    </span>
+                </div>
+            </div>
+        </nav>
+
+        <h1 class="text-center text-blood mt-4">Liste des raccourcis</h1>
+        <div id="shortcuts-container" class="row p-4 align-items-center"></div>
+        
+    </body>
+
+    <footer>
+        <script src="assets/js/jQuery-3.6.0.min.js" />
+        <script src="assets/js/bootstrap-bundle-5.0.0.min.js"></script>
+        <script src="assets/js/main.js"></script>
+    </footer>
+</html>
