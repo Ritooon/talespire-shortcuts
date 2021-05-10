@@ -1,4 +1,26 @@
-# Talespire-shortcuts
+# ![image](https://user-images.githubusercontent.com/2474167/117669756-8a20eb00-b1a7-11eb-975b-35e9f34b9f51.png) Talespire-shortcuts
+
+## What is it ? 🤔
+
+Allows you to generate dice rolls in Talespire. All you have to do is enter your character's modificators (It's saved locally, even after closing your browser 💥🧠💥) and click on one of the dice. <br />
+=> He launches the command in Talespire, all you have to do is roll the dice, the modificators are applied!
+
+## Hummm okay, but how to install ?
+
+2 solutions : 
+
+1) Go through the url (No download required) : https://ritooon.github.io/talespire-shortcuts/
+
+2) Locally via the zip  :
+
+
+Nothing's easier ! On Github, just go there : 
+![image](https://user-images.githubusercontent.com/2474167/117661375-95bbe400-b19e-11eb-9e9d-7cffe4d1a713.png)
+
+
+Then, on your Windows / Mac OS / Linux computer, unzip, and you open "index.html" with your favorite browser (Chrome, Firefox, Safari, Opera, Brave, (Not IE, seriously ...)) and let's roll !
+
+# ![image](https://user-images.githubusercontent.com/2474167/117669851-a3299c00-b1a7-11eb-9692-57588fee1802.png) Talespire-shortcuts
 
 ## Ca fait quoi ? 🤔
 
