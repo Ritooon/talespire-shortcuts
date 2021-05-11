@@ -15,6 +15,11 @@
     background-color: #3e4e54!important;
 }
 
+.big-bold { 
+    font-size: 1rem;
+    font-weight: bold;
+}
+
 body { overflow-x: hidden; }
 
 /* Misc */
@@ -66,6 +71,11 @@ body { overflow-x: hidden; }
     cursor: pointer; 
     margin-left: 1rem !important;
 }
+
+/* Money calculator */
+
+#money_type { height: 30px; }
+
 
 /* Light theme */
 body.light-theme { background-color: #F9F2E7; }

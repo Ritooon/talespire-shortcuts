@@ -1,109 +1,20 @@
 $(document).ready(function(){
     loadTheme();
     loadCaracteristics();
-    displayLanguage();
-});
+    loadMoney();
 
-var arrayCaracteristics = [
-    {'carac': 'strength', 'name': 'Strength'},
-    {'carac': 'dexterity', 'name': 'Dexterity'},
-    {'carac': 'constitution', 'name': 'Constitution'},
-    {'carac': 'intelligence', 'name': 'Intelligence'},
-    {'carac': 'wisdom', 'name': 'Wisdom'},
-    {'carac': 'charisma', 'name': 'Charisma'}
-];
-
-function displayLanguage()
-{
-    if(typeof localStorage.getItem('lang') == 'undefined' || localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'en')
+    if(typeof localStorage.getItem('location') != 'undefined' && localStorage.getItem('location') != null)
     {
-        $('#english-switch').css('display', 'none');
-        $('#french-switch').css('display', 'inline-block');
-
-        $('h1').html('Shortcuts list');
-
-        arrayCaracteristics = [
-            {'carac': 'strength', 'name': 'Strength'},
-            {'carac': 'dexterity', 'name': 'Dexterity'},
-            {'carac': 'constitution', 'name': 'Constitution'},
-            {'carac': 'intelligence', 'name': 'Intelligence'},
-            {'carac': 'wisdom', 'name': 'Wisdom'},
-            {'carac': 'charisma', 'name': 'Charisma'}
-        ];
+        show_menu(localStorage.getItem('location'));
     }
     else
     {
-        $('#english-switch').css('display', 'inline-block');
-        $('#french-switch').css('display', 'none');
-
-        $('h1').html('Liste des raccourcis');
-
-        arrayCaracteristics = [
-            {'carac': 'strength', 'name': 'Force'},
-            {'carac': 'dexterity', 'name': 'Dextérité'},
-            {'carac': 'constitution', 'name': 'Constitution'},
-            {'carac': 'intelligence', 'name': 'Intelligence'},
-            {'carac': 'wisdom', 'name': 'Sagesse'},
-            {'carac': 'charisma', 'name': 'Charisme'}
-        ];
+        show_menu('shortcuts');
     }
+    
+    displayLanguage();
+});
 
-    loadCaracteristics();
-}
-
-function loadCaracteristics()
-{
-    $('#shortcuts-container').html('');
-
-    arrayCaracteristics.forEach(element => {
-        let caraBlock = '<div class="p-0 m-0 col-4 card text-white bg-secondary m-3">';
-        caraBlock += '<div class="card-header text-center"><img src="assets/img/'+element.carac+'.png" /> '+element.name;
-        caraBlock += '<input type="text" id="'+element.carac+'-mod" placeholder="Mod." class="modificator" />';
-        caraBlock += '</div>';
-        caraBlock += '<div class="card-body text-center">';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="4"><img src="assets/img/d4.svg" class="d4-color" /></a>';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="6"><img src="assets/img/d6.svg" class="d6-color" /></a>';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="8"><img src="assets/img/d8.svg" class="d8-color" /></a>';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="10"><img src="assets/img/d10.svg" class="d10-color" /></a>';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="12"><img src="assets/img/d12.svg" class="d12-color" /></a>';
-        caraBlock += '<a class="launch-dice" data-type="'+element.carac+'" data-dice="20"><img src="assets/img/d20.svg" class="d20-color" /></a>';
-        caraBlock += '</div></div>';
-
-        $('#shortcuts-container').append(caraBlock);
-    });
-
-    bindActions();
-    loadModificators();
-}
-
-function bindActions()
-{
-    $('.modificator').off('keyup').on('keyup', function(){
-        localStorage.setItem($(this).attr('id'), $(this).val());
-    });
-
-    $('.launch-dice').off('click').on('click', function(){
-        let modificator = parseInt($('#'+$(this).attr('data-type')+'-mod').val());
-        
-        if(isNaN(modificator)) 
-        { 
-            modificator = ''; 
-        } 
-        else if(modificator > 0)
-        {
-            modificator = '+'+modificator;
-        }
-
-        window.open('talespire://dice/attack:d'+$(this).attr('data-dice')+modificator);
-    });
-}
-
-function loadModificators()
-{
-    arrayCaracteristics.forEach(element => {
-        $('#'+element.carac+'-mod').val(localStorage.getItem(element.carac+'-mod'));
-    });
-}
 
 function loadTheme()
 {
@@ -132,18 +43,3 @@ function switchTheme(theme)
     loadTheme();
 }
 
-
-function switchLanguage(lang)
-{
-    if(lang == 'en') { 
-        $('#english-switch').css('display', 'none');
-        $('#french-switch').css('display', 'inline-block');
-    } else {
-        $('#english-switch').css('display', 'inline-block');
-        $('#french-switch').css('display', 'none');
-    }
-
-    localStorage.setItem('lang', lang);
-
-    displayLanguage();
-}
