@@ -80,7 +80,7 @@ function doCalculate(simVal)
     let conversionToPC = parseInt(valToAddRemove)*parseInt(multiplicators[moneyToAddRemove]);
 
     // Add Or Remove
-    let newTotalPC = totalPC - conversionToPC;
+    let newTotalPC = totalPC + conversionToPC;
 
     // Convert money in this sens : from PP to PC and update bag
     let newPP = 0, newPE = 0, newPC = 0, newPA = 0, newPO = 0;
