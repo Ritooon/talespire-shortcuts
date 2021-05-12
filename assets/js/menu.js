@@ -9,8 +9,11 @@ function loadMenu()
     $('.navbar-nav').html('');
 
     menu.forEach(element => {
-        $('.navbar-nav').append('<li class="nav-item"><a class="nav-link translated" data-trans="'+element.trans
-            +'" href="'+element.function+'"></a></li>');
+        $('.navbar-nav').append(`
+            <li class="nav-item">
+                <a class="nav-link translated" data-trans="${element.trans}" href="${element.function}"></a>
+            </li>
+        `);
     });
 }
 
