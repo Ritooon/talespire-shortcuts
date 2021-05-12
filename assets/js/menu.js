@@ -1,7 +1,7 @@
 // Navabar menu array - Global
 var menu = [
-    {'function': 'show_menu(\'shortcuts\')', 'trans': 'menu_shortcuts'},
-    {'function': 'show_menu(\'money\')', 'trans': 'menu_calculator'}
+    {'function': 'shortcuts', 'trans': 'menu_shortcuts'},
+    {'function': 'money', 'trans': 'menu_calculator'}
 ];
 
 function loadMenu()
@@ -10,12 +10,15 @@ function loadMenu()
 
     menu.forEach(element => {
         $('.navbar-nav').append('<li class="nav-item"><a class="nav-link translated" data-trans="'+element.trans
-            +'" href="#" onclick="'+element.function+'"></a></li>');
+            +'" href="'+element.function+'"></a></li>');
     });
 }
 
-function show_menu(functionnality)
+function show_menu()
 {
+    let url = window.location.href.toString().split('/');
+    let functionnality = url[url.length - 1];
+
     if(functionnality == 'shortcuts') {
         $('#shortcuts-container').css('display', 'flex');
         $('.containers:not(#shortcuts-container)').css('display', 'none');
@@ -26,11 +29,5 @@ function show_menu(functionnality)
         $('h1').attr('data-trans', 'calculator_fn');
     }
 
-    saveMenuLocation(functionnality);
     displayLanguage();
-}
-
-function saveMenuLocation(location)
-{
-    localStorage.setItem('location', location);
 }
