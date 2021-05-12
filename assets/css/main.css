@@ -5,6 +5,9 @@
 
 .bg-coral { background-color: #FF847C; }
 
+.ml-1 { margin-left: 0.5rem !important; }
+.ml-2 { margin-left: 1rem !important; }
+.ml-3 { margin-left: 1.25rem !important; }
 .ml-4 { margin-left: 1.5rem !important; }
 
 *:focus, *:focus, *:focus{
@@ -19,6 +22,8 @@
     font-size: 1rem;
     font-weight: bold;
 }
+
+.valign-middle { vertical-align: middle; }
 
 body { overflow-x: hidden; }
 
@@ -75,6 +80,7 @@ body { overflow-x: hidden; }
 /* Money calculator */
 
 #money_type { height: 30px; }
+.title_indicator { font-size: 0.8rem;}
 
 
 /* Light theme */

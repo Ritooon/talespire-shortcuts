@@ -22,10 +22,10 @@ function loadMoney()
         let nbPieces = !isNaN(parseInt(localStorage.getItem(element.money))) ? parseInt(localStorage.getItem(element.money)) : 0;
 
         calculator += '<div class="col">';
-        calculator += '<h4 data-trans="'+element.trans+'" class="translated"></h4>';
+        calculator += '<h4><span  data-trans="'+element.trans+'" class="translated valign-middle"></span>';
+        calculator += '<span id="new_'+element.money+'" class="title_indicator valign-middle ml-1"></span></h4>';
         calculator += '<input type="number" step="1" name="'+element.money+'" class="money_input" data-money="'+element.money+'" ';
         calculator += ' value="'+nbPieces+'" />';
-        calculator += '<span id="new_'+element.money+'"></span>';
         calculator += '</div>';
     });
     calculator += '</div>';
@@ -41,7 +41,6 @@ function loadMoney()
     calculator += '</select>';
 
     calculator += '<input type="number" step="1" id="money_to_add_remove" />';
-    calculator += '<button class="btn btn-primary translated ml-4" onclick="doCalculate(\'simulate\')" data-trans="simulate"></button>';
     calculator += '<button class="btn btn-danger translated ml-4" onclick="doCalculate(\'validate\')" data-trans="validate"></button>';
     calculator += '</div>';
     calculator += '</div>';
@@ -52,12 +51,21 @@ function loadMoney()
     bindMoney();
 }
 
-
 function bindMoney()
 {
     // save money
     $('.money_input').off('change, keyup').on('change, keyup', function(){
         localStorage.setItem($(this).attr('data-money'), $(this).val());
+    });
+
+    // Select money type trigger
+    $('#money_type').off('change').on('change', function(){
+        doCalculate('simulate');
+    });
+
+    // Value to add/remove trigger
+    $('#money_to_add_remove').off('change, keyup').on('change, keyup', function(){
+        doCalculate('simulate');
     });
 }
 
@@ -65,6 +73,8 @@ function doCalculate(simVal)
 {
     $('#new_pp').html('').css('display', 'none');
     $('#new_pp, #new_pe, #new_po, #new_pa, #new_pc').html('').css('display', 'none');
+
+    if(isNaN($('#money_to_add_remove').val()) || parseInt($('#money_to_add_remove').val()) == 0) { return; }
 
     // Convert money bag into PC
     let totalPC = 0;
@@ -117,7 +127,6 @@ function doCalculate(simVal)
         if (emergcyStop > 20) { break; }
     }
 
-    console.log(simVal)
     // If simulation : Display potential results 
     if(simVal == 'simulate')
     {
