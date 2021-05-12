@@ -80,7 +80,7 @@ function displayLanguage()
 
 function switchLanguage(lang)
 {
-    if(lang == 'en') { 
+    if(lang == 'en') {
         $('#english-switch').css('display', 'none');
         $('#french-switch').css('display', 'inline-block');
     } else {

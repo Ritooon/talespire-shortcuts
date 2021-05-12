@@ -8,44 +8,53 @@ var moneyType = [
 
 var multiplicators = { 'po' : 100, 'pa' : 10, 'pc' : 1, 'pp' : 1000, 'pe' : 200 };
 
+function getInput({money, trans})
+{
+    const nbPieces = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
+    return (`
+        <div class="col">
+            <h4><span data-trans="${trans}" class="translated valign-middle"></span>
+            <span id="new_${money}" class="title_indicator valign-middle ml-1"></span></h4>
+            <input type="number" step="1" name="${money}" class="money_input" data-money="${money}" value="${nbPieces}" />
+        </div>
+    `);
+}
+
+function getOption({money, trans})
+{
+    return `<option class="translated" value="${money}">${trans}</option>`
+}
+
 function loadMoney()
 {
-    let calculator = '';
-    calculator += '<div class="p-0 m-0 card text-white bg-secondary m-3">';
-    calculator += '<div class="card-header text-center"><h2><img src="assets/img/money-bag.png"> <span class="translated" data-trans="calculator_fn"></span></h2></div>';
-    calculator += '<div class="card-body text-center">';
-    calculator += '<div class="row text-center mb-4"><div class="col-12">';
-    calculator += '<span class="translated p-2 bg-coral text-white big-bold" data-trans="reminder"></span> : 1 PO = 10 PA - 1 PO = 100 PC - 1 PO = 2 PE - 1 PP = 10 PO  - 1 PP = 20 PE';
-    calculator += '</div></div>';
-    calculator += '<div class="row text-center">';
-    moneyType.forEach(element => {
-        let nbPieces = !isNaN(parseInt(localStorage.getItem(element.money))) ? parseInt(localStorage.getItem(element.money)) : 0;
+    let calculator = `
+    <div class="p-0 m-0 card text-white bg-secondary m-3">
+        <div class="card-header text-center">
+            <h2><img src="assets/img/money-bag.png"> <span class="translated" data-trans="calculator_fn"></span></h2>
+        </div>
 
-        calculator += '<div class="col">';
-        calculator += '<h4><span  data-trans="'+element.trans+'" class="translated valign-middle"></span>';
-        calculator += '<span id="new_'+element.money+'" class="title_indicator valign-middle ml-1"></span></h4>';
-        calculator += '<input type="number" step="1" name="'+element.money+'" class="money_input" data-money="'+element.money+'" ';
-        calculator += ' value="'+nbPieces+'" />';
-        calculator += '</div>';
-    });
-    calculator += '</div>';
+        <div class="card-body text-center">
+            <div class="row text-center mb-4">
+                <div class="col-12">
+                    <span class="translated p-2 bg-coral text-white big-bold" data-trans="reminder"></span> : 1 PO = 10 PA - 1 PO = 100 PC - 1 PO = 2 PE - 1 PP = 10 PO - 1 PP = 20 PE
+                </div>
+            </div>
+        <div class="row text-center">
+            ${moneyType.map(getInput).join('')}
+        </div>
 
-    calculator += '<div class="row text-center mt-4">';
-    calculator += '<h3 data-trans="money_more_less" class="translated"></h3>';
-    calculator += '<div class="col">';
-    calculator += '<select id="money_type">';
-
-    moneyType.forEach(element => {
-        calculator += '<option  class="translated" value="'+element.money+'">'+element.trans+'</option>';
-    });
-    calculator += '</select>';
-
-    calculator += '<input type="number" step="1" id="money_to_add_remove" />';
-    calculator += '<button class="btn btn-danger translated ml-4" onclick="doCalculate(\'validate\')" data-trans="validate"></button>';
-    calculator += '</div>';
-    calculator += '</div>';
-    
-    calculator += '</div></div>';
+        <div class="row text-center mt-4">
+            <h3 data-trans="money_more_less" class="translated"></h3>
+            <div class="col">
+                <select id="money_type">
+                    ${moneyType.map(getOption).join('')}
+                </select>
+                <input type="number" step="1" id="money_to_add_remove" />
+                <button class="btn btn-danger translated ml-4" onclick="doCalculate(\'validate\')" data-trans="validate"></button>
+            </div>
+        </div>
+    </div>
+    `;
 
     $('#money-container').html(calculator);
     bindMoney();
@@ -95,31 +104,31 @@ function doCalculate(simVal)
     // Convert money in this sens : from PP to PC and update bag
     let newPP = 0, newPE = 0, newPC = 0, newPA = 0, newPO = 0;
     let emergcyStop = 0
-    while (newTotalPC > 0) 
+    while (newTotalPC > 0)
     {
-        if(parseInt(newTotalPC/1000) > 0) 
-        { 
-            newPP = parseInt(newTotalPC/1000); 
+        if(parseInt(newTotalPC/1000) > 0)
+        {
+            newPP = parseInt(newTotalPC/1000);
             newTotalPC -= (newPP*1000);
-        } 
-        else if(parseInt(newTotalPC/200) > 0) 
-        { 
-            newPE = parseInt(newTotalPC/200); 
+        }
+        else if(parseInt(newTotalPC/200) > 0)
+        {
+            newPE = parseInt(newTotalPC/200);
             newTotalPC -= (newPE*200);
-        } 
-        else if(parseInt(newTotalPC/100) > 0) 
-        { 
-            newPO = parseInt(newTotalPC/100); 
+        }
+        else if(parseInt(newTotalPC/100) > 0)
+        {
+            newPO = parseInt(newTotalPC/100);
             newTotalPC -= (newPO*100);
-        } 
-        else if(parseInt(newTotalPC/10) > 0) 
-        { 
-            newPA = parseInt(newTotalPC/10); 
+        }
+        else if(parseInt(newTotalPC/10) > 0)
+        {
+            newPA = parseInt(newTotalPC/10);
             newTotalPC -= (newPA*10);
-        } 
-        else 
-        { 
-            newPC = newTotalPC; 
+        }
+        else
+        {
+            newPC = newTotalPC;
             newTotalPC = 0;
         }
 
@@ -127,14 +136,14 @@ function doCalculate(simVal)
         if (emergcyStop > 20) { break; }
     }
 
-    // If simulation : Display potential results 
+    // If simulation : Display potential results
     if(simVal == 'simulate')
     {
-        $('#new_pp').html('<i class="fas fa-arrow-right"></i> '+newPP).css('display', 'inline-block');
-        $('#new_pe').html('<i class="fas fa-arrow-right"></i> '+newPE).css('display', 'inline-block');
-        $('#new_po').html('<i class="fas fa-arrow-right"></i> '+newPO).css('display', 'inline-block');
-        $('#new_pa').html('<i class="fas fa-arrow-right"></i> '+newPA).css('display', 'inline-block');
-        $('#new_pc').html('<i class="fas fa-arrow-right"></i> '+newPC).css('display', 'inline-block');
+        $('#new_pp').html(`<i class="fas fa-arrow-right"></i> ${newPP}`).css('display', 'inline-block');
+        $('#new_pe').html(`<i class="fas fa-arrow-right"></i> ${newPE}`).css('display', 'inline-block');
+        $('#new_po').html(`<i class="fas fa-arrow-right"></i> ${newPO}`).css('display', 'inline-block');
+        $('#new_pa').html(`<i class="fas fa-arrow-right"></i> ${newPA}`).css('display', 'inline-block');
+        $('#new_pc').html(`<i class="fas fa-arrow-right"></i> ${newPC}`).css('display', 'inline-block');
     }
     // If validation update bag immediatly
     else if(simVal == 'validate')

@@ -9,8 +9,11 @@ function loadMenu()
     $('.navbar-nav').html('');
 
     menu.forEach(element => {
-        $('.navbar-nav').append('<li class="nav-item"><a class="nav-link translated" data-trans="'+element.trans
-            +'" href="'+element.function+'"></a></li>');
+        $('.navbar-nav').append(`
+            <li class="nav-item">
+                <a class="nav-link translated" data-trans="${element.trans}" href="${element.function}"></a>
+            </li>
+        `);
     });
 }
 
@@ -23,7 +26,7 @@ function show_menu()
         $('#shortcuts-container').css('display', 'flex');
         $('.containers:not(#shortcuts-container)').css('display', 'none');
         $('h1').attr('data-trans', 'shortcut_list');
-    } else if(functionnality == 'money') { 
+    } else if(functionnality == 'money') {
         $('#money-container').css('display', 'flex');
         $('.containers:not(#money-container)').css('display', 'none');
         $('h1').attr('data-trans', 'calculator_fn');
