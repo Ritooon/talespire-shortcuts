@@ -22,7 +22,7 @@ function show_menu()
     let url = window.location.href.toString().split('/');
     let functionnality = url[url.length - 1];
 
-    if(functionnality == 'shortcuts') {
+    if(functionnality == 'shortcuts' || functionnality == '') {
         $('#shortcuts-container').css('display', 'flex');
         $('.containers:not(#shortcuts-container)').css('display', 'none');
         $('h1').attr('data-trans', 'shortcut_list');

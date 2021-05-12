@@ -5,7 +5,7 @@ function loadCaracteristics()
     const caraBlocks = arrayCaracteristics.map(({name, carac}) => {
         return (`
             <div class="p-0 m-0 col-4 card text-white bg-secondary m-3">
-                <div class="card-header text-center"><img src="assets/img/${`element.carac`}.png" /> ${name}
+                <div class="card-header text-center"><img src="assets/img/${carac}.png" /> ${name}
                 <input type="text" id="${carac}-mod" placeholder="Mod." class="modificator" />
             </div>
             <div class="card-body text-center">
