@@ -11,7 +11,7 @@ $(document).ready(function(){
     {
         show_menu('shortcuts');
     }
-    
+
     displayLanguage();
 });
 
@@ -31,7 +31,7 @@ function loadTheme()
 
 function switchTheme(theme)
 {
-    if(theme == 'dark-theme') { 
+    if(theme == 'dark-theme') {
         $('#dark-theme-switch').css('display', 'none');
         $('#light-theme-switch').css('display', 'inline-block');
     } else {

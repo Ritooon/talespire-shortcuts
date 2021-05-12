@@ -104,31 +104,31 @@ function doCalculate(simVal)
     // Convert money in this sens : from PP to PC and update bag
     let newPP = 0, newPE = 0, newPC = 0, newPA = 0, newPO = 0;
     let emergcyStop = 0
-    while (newTotalPC > 0) 
+    while (newTotalPC > 0)
     {
-        if(parseInt(newTotalPC/1000) > 0) 
-        { 
-            newPP = parseInt(newTotalPC/1000); 
+        if(parseInt(newTotalPC/1000) > 0)
+        {
+            newPP = parseInt(newTotalPC/1000);
             newTotalPC -= (newPP*1000);
-        } 
-        else if(parseInt(newTotalPC/200) > 0) 
-        { 
-            newPE = parseInt(newTotalPC/200); 
+        }
+        else if(parseInt(newTotalPC/200) > 0)
+        {
+            newPE = parseInt(newTotalPC/200);
             newTotalPC -= (newPE*200);
-        } 
-        else if(parseInt(newTotalPC/100) > 0) 
-        { 
-            newPO = parseInt(newTotalPC/100); 
+        }
+        else if(parseInt(newTotalPC/100) > 0)
+        {
+            newPO = parseInt(newTotalPC/100);
             newTotalPC -= (newPO*100);
-        } 
-        else if(parseInt(newTotalPC/10) > 0) 
-        { 
-            newPA = parseInt(newTotalPC/10); 
+        }
+        else if(parseInt(newTotalPC/10) > 0)
+        {
+            newPA = parseInt(newTotalPC/10);
             newTotalPC -= (newPA*10);
-        } 
-        else 
-        { 
-            newPC = newTotalPC; 
+        }
+        else
+        {
+            newPC = newTotalPC;
             newTotalPC = 0;
         }
 
@@ -136,7 +136,7 @@ function doCalculate(simVal)
         if (emergcyStop > 20) { break; }
     }
 
-    // If simulation : Display potential results 
+    // If simulation : Display potential results
     if(simVal == 'simulate')
     {
         $('#new_pp').html(`<i class="fas fa-arrow-right"></i> ${newPP}`).css('display', 'inline-block');
