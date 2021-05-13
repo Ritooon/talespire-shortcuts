@@ -13,8 +13,11 @@ function getInput({money, trans})
     const nbPieces = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
     return (`
         <div class="col">
-            <h4><span data-trans="${trans}" class="translated valign-middle"></span>
-            <span id="new_${money}" class="title_indicator valign-middle ml-1"></span></h4>
+            <h4>
+                <span>${getCoin(money, '54px')}</span>
+                <span data-trans="${trans}" class="translated valign-middle"></span>
+                <span id="new_${money}" class="title_indicator valign-middle ml-1"></span>
+            </h4>
             <input type="number" step="1" name="${money}" class="money_input" data-money="${money}" value="${nbPieces}" />
         </div>
     `);
@@ -36,7 +39,12 @@ function loadMoney()
         <div class="card-body text-center">
             <div class="row text-center mb-4">
                 <div class="col-12">
-                    <span class="translated p-2 bg-coral text-white big-bold" data-trans="reminder"></span> : 1 PO = 10 PA - 1 PO = 100 PC - 1 PO = 2 PE - 1 PP = 10 PO - 1 PP = 20 PE
+                    <span class="translated p-2 bg-coral text-white big-bold" data-trans="reminder"></span> :
+                    <span>${getCoin("po")} = ${getCoin("pa")}x10</span> |
+                    <span>${getCoin("po")} = ${getCoin("pc")}x100</span> |
+                    <span>${getCoin("po")} = ${getCoin("pe")}x2</span> |
+                    <span>${getCoin("pp")} = ${getCoin("po")}x10</span> |
+                    <span>${getCoin("pp")} = ${getCoin("pe")}x20</span>
                 </div>
             </div>
         <div class="row text-center">
