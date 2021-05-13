@@ -1,9 +1,9 @@
 const COLORS = {
-  po: "#FFDA00",
-  pa: "#D8D8D8",
-  pc: "#8B572A",
+  gp: "#FFDA00",
+  sp: "#D8D8D8",
+  cp: "#8B572A",
   pp: "#74B6E1",
-  pe: "#4A4A4A"
+  ep: "#4A4A4A"
 }
 
 function getCoin(type, size = '22px')

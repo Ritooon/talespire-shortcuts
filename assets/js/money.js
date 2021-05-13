@@ -1,21 +1,21 @@
 var moneyType = [
-    {'money': 'po', 'trans' : 'po', 'multiplicator_to_pc' : 100},
-    {'money': 'pa', 'trans' : 'pa', 'multiplicator_to_pc' : 10},
-    {'money': 'pc', 'trans' : 'pc', 'multiplicator_to_pc' : 1},
-    {'money': 'pp', 'trans' : 'pp', 'multiplicator_to_pc' : 1000},
-    {'money': 'pe', 'trans' : 'pe', 'multiplicator_to_pc' : 200},
+    {'money': 'gp', 'multiplicator_to_pc': 100},
+    {'money': 'sp', 'multiplicator_to_pc': 10},
+    {'money': 'cp', 'multiplicator_to_pc': 1},
+    {'money': 'pp', 'multiplicator_to_pc': 1000},
+    {'money': 'ep', 'multiplicator_to_pc': 200},
 ];
 
-var multiplicators = { 'po' : 100, 'pa' : 10, 'pc' : 1, 'pp' : 1000, 'pe' : 200 };
+var multiplicators = { 'gp': 100, 'sp': 10, 'cp': 1, 'pp': 1000, 'ep': 200 };
 
-function getInput({money, trans})
+function getInput({money})
 {
     const nbPieces = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
     return (`
         <div class="col">
             <h4>
                 <span>${getCoin(money, '54px')}</span>
-                <span data-trans="${trans}" class="translated valign-middle"></span>
+                <span data-trans="${money}" class="translated valign-middle"></span>
                 <span id="new_${money}" class="title_indicator valign-middle ml-1"></span>
             </h4>
             <input type="number" step="1" name="${money}" class="money_input" data-money="${money}" value="${nbPieces}" />
@@ -23,9 +23,9 @@ function getInput({money, trans})
     `);
 }
 
-function getOption({money, trans})
+function getOption({money})
 {
-    return `<option class="translated" value="${money}">${trans}</option>`
+    return `<option class="translated" value="${money}" data-trans="${money}">${money}</option>`
 }
 
 function loadMoney()
@@ -40,11 +40,11 @@ function loadMoney()
             <div class="row text-center mb-4">
                 <div class="col-12">
                     <span class="translated p-2 bg-coral text-white big-bold" data-trans="reminder"></span> :
-                    <span>${getCoin("po")} = ${getCoin("pa")}x10</span> |
-                    <span>${getCoin("po")} = ${getCoin("pc")}x100</span> |
-                    <span>${getCoin("po")} = ${getCoin("pe")}x2</span> |
-                    <span>${getCoin("pp")} = ${getCoin("po")}x10</span> |
-                    <span>${getCoin("pp")} = ${getCoin("pe")}x20</span>
+                    <span>${getCoin("gp")} = ${getCoin("sp")}x10</span> |
+                    <span>${getCoin("gp")} = ${getCoin("cp")}x100</span> |
+                    <span>${getCoin("gp")} = ${getCoin("ep")}x2</span> |
+                    <span>${getCoin("pp")} = ${getCoin("gp")}x10</span> |
+                    <span>${getCoin("pp")} = ${getCoin("ep")}x20</span>
                 </div>
             </div>
         <div class="row text-center">
@@ -89,7 +89,7 @@ function bindMoney()
 function doCalculate(simVal)
 {
     $('#new_pp').html('').css('display', 'none');
-    $('#new_pp, #new_pe, #new_po, #new_pa, #new_pc').html('').css('display', 'none');
+    $('#new_pp, #new_ep, #new_gp, #new_sp, #new_cp').html('').css('display', 'none');
 
     if(isNaN($('#money_to_add_remove').val()) || parseInt($('#money_to_add_remove').val()) == 0) { return; }
 
@@ -104,40 +104,40 @@ function doCalculate(simVal)
     // Convert val to add or remove into PC
     let moneyToAddRemove = $('#money_type').val();
     let valToAddRemove = $('#money_to_add_remove').val();
-    let conversionToPC = parseInt(valToAddRemove)*parseInt(multiplicators[moneyToAddRemove]);
+    let conversionToCP = parseInt(valToAddRemove)*parseInt(multiplicators[moneyToAddRemove]);
 
     // Add Or Remove
-    let newTotalPC = totalPC + conversionToPC;
+    let newTotalCP = totalPC + conversionToCP;
 
     // Convert money in this sens : from PP to PC and update bag
-    let newPP = 0, newPE = 0, newPC = 0, newPA = 0, newPO = 0;
+    let newPP = 0, newEP = 0, newCP = 0, newSP = 0, newGP = 0;
     let emergcyStop = 0
-    while (newTotalPC > 0)
+    while (newTotalCP > 0)
     {
-        if(parseInt(newTotalPC/1000) > 0)
+        if(parseInt(newTotalCP/1000) > 0)
         {
-            newPP = parseInt(newTotalPC/1000);
-            newTotalPC -= (newPP*1000);
+            newPP = parseInt(newTotalCP/1000);
+            newTotalCP -= (newPP*1000);
         }
-        else if(parseInt(newTotalPC/200) > 0)
+        else if(parseInt(newTotalCP/200) > 0)
         {
-            newPE = parseInt(newTotalPC/200);
-            newTotalPC -= (newPE*200);
+            newEP = parseInt(newTotalCP/200);
+            newTotalCP -= (newEP*200);
         }
-        else if(parseInt(newTotalPC/100) > 0)
+        else if(parseInt(newTotalCP/100) > 0)
         {
-            newPO = parseInt(newTotalPC/100);
-            newTotalPC -= (newPO*100);
+            newGP = parseInt(newTotalCP/100);
+            newTotalCP -= (newGP*100);
         }
-        else if(parseInt(newTotalPC/10) > 0)
+        else if(parseInt(newTotalCP/10) > 0)
         {
-            newPA = parseInt(newTotalPC/10);
-            newTotalPC -= (newPA*10);
+            newSP = parseInt(newTotalCP/10);
+            newTotalCP -= (newSP*10);
         }
         else
         {
-            newPC = newTotalPC;
-            newTotalPC = 0;
+            newCP = newTotalCP;
+            newTotalCP = 0;
         }
 
         emergcyStop++;
@@ -148,19 +148,19 @@ function doCalculate(simVal)
     if(simVal == 'simulate')
     {
         $('#new_pp').html(`<i class="fas fa-arrow-right"></i> ${newPP}`).css('display', 'inline-block');
-        $('#new_pe').html(`<i class="fas fa-arrow-right"></i> ${newPE}`).css('display', 'inline-block');
-        $('#new_po').html(`<i class="fas fa-arrow-right"></i> ${newPO}`).css('display', 'inline-block');
-        $('#new_pa').html(`<i class="fas fa-arrow-right"></i> ${newPA}`).css('display', 'inline-block');
-        $('#new_pc').html(`<i class="fas fa-arrow-right"></i> ${newPC}`).css('display', 'inline-block');
+        $('#new_ep').html(`<i class="fas fa-arrow-right"></i> ${newEP}`).css('display', 'inline-block');
+        $('#new_gp').html(`<i class="fas fa-arrow-right"></i> ${newGP}`).css('display', 'inline-block');
+        $('#new_sp').html(`<i class="fas fa-arrow-right"></i> ${newSP}`).css('display', 'inline-block');
+        $('#new_cp').html(`<i class="fas fa-arrow-right"></i> ${newCP}`).css('display', 'inline-block');
     }
     // If validation update bag immediatly
     else if(simVal == 'validate')
     {
         $('input[data-money="pp"]').val(newPP).trigger('keyup');
-        $('input[data-money="pe"]').val(newPE).trigger('keyup');
-        $('input[data-money="po"]').val(newPO).trigger('keyup');
-        $('input[data-money="pa"]').val(newPA).trigger('keyup');
-        $('input[data-money="pc"]').val(newPC).trigger('keyup');
+        $('input[data-money="ep"]').val(newEP).trigger('keyup');
+        $('input[data-money="gp"]').val(newGP).trigger('keyup');
+        $('input[data-money="sp"]').val(newSP).trigger('keyup');
+        $('input[data-money="cp"]').val(newCP).trigger('keyup');
 
         $('#money_to_add_remove').val('');
     }
