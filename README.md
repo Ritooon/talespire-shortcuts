@@ -62,4 +62,4 @@ Rien de plus simple ! Sur Github, suffit de passer par là :
 ![image](https://user-images.githubusercontent.com/2474167/117661375-95bbe400-b19e-11eb-9e9d-7cffe4d1a713.png)
 
 
-Ensuite, sur ton orginateur Windows/Mac OS/Linux, tu dézippe, et tu ouvres "index.html" avec ton navigateur préféré (Chrome, Firefox, Safari, Opera, Brave, (Pas IE, sérieusement ...)) et c'est parti ! 
+Ensuite, sur ton ordinateur Windows/Mac OS/Linux, tu dézippes, et tu ouvres "index.html" avec ton navigateur préféré (Chrome, Firefox, Safari, Opera, Brave, (Pas IE, sérieusement ...)) et c'est parti ! 
