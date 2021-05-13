@@ -23,7 +23,7 @@ Tips : You have to specify if it's negative or positive (eg: You loose 2PO, type
 
 2 solutions : 
 
-1) Go through the url (No download required) : http://talespire.ritooon.xyz/ (Have actually some troubles with SSL Cert)
+1) Go through the url (No download required) : https://talespire.ritooon.xyz/ (Have actually some troubles with SSL Cert)
 
 2) Locally via the zip  :
 
@@ -53,7 +53,7 @@ Astuce : Vous devez spécifier si le montant est négatif (A retirer) ou positif
 
 2 solutions : 
 
-1) Passer par l'url (Pas besoin de le télécharger) : http://talespire.ritooon.xyz/ (Quelques problèmes liés au certificat SSL actuellement)
+1) Passer par l'url (Pas besoin de le télécharger) : https://talespire.ritooon.xyz/ (Quelques problèmes liés au certificat SSL actuellement)
 
 2) En local via le zip  :
 
