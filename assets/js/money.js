@@ -1,14 +1,12 @@
-var moneyType = [
-    {'money': 'gp', 'multiplicator_to_pc': 100},
-    {'money': 'sp', 'multiplicator_to_pc': 10},
-    {'money': 'cp', 'multiplicator_to_pc': 1},
-    {'money': 'pp', 'multiplicator_to_pc': 1000},
-    {'money': 'ep', 'multiplicator_to_pc': 200},
-];
+const moneyTypes = {
+    pp: 1000,
+    ep: 200,
+    gp: 100,
+    sp: 10,
+    cp: 1
+}
 
-var multiplicators = { 'gp': 100, 'sp': 10, 'cp': 1, 'pp': 1000, 'ep': 200 };
-
-function getInput({money})
+function getInput(money)
 {
     const nbPieces = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
     return (`
@@ -23,9 +21,9 @@ function getInput({money})
     `);
 }
 
-function getOption({money})
+function getOption(money)
 {
-    return `<option class="translated" value="${money}" data-trans="${money}">${money}</option>`
+    return `<option class="translated" value="${money}" data-trans="${money}" ${money === "gp" && 'selected="selected"'}>${money}</option>`
 }
 
 function loadMoney()
@@ -48,14 +46,14 @@ function loadMoney()
                 </div>
             </div>
         <div class="row text-center">
-            ${moneyType.map(getInput).join('')}
+            ${Object.keys(moneyTypes).map(getInput).join('')}
         </div>
 
         <div class="row text-center mt-4">
             <h3 data-trans="money_more_less" class="translated"></h3>
             <div class="col">
                 <select id="money_type">
-                    ${moneyType.map(getOption).join('')}
+                    ${Object.keys(moneyTypes).map(getOption).join('')}
                 </select>
                 <input type="number" step="1" id="money_to_add_remove" />
                 <button class="btn btn-danger translated ml-4" onclick="doCalculate(\'validate\')" data-trans="validate"></button>
@@ -95,16 +93,16 @@ function doCalculate(simVal)
 
     // Convert money bag into PC
     let totalPC = 0;
-    moneyType.forEach(element => {
-        let tmpMoney = !isNaN(parseInt(localStorage.getItem(element.money))) ? parseInt(localStorage.getItem(element.money)) : 0;
+    Object.keys(moneyTypes).forEach(money => {
+        let tmpMoney = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
 
-        totalPC += tmpMoney*parseInt(element.multiplicator_to_pc);
+        totalPC += tmpMoney * parseInt(moneyTypes[money]);
     });
 
     // Convert val to add or remove into PC
     let moneyToAddRemove = $('#money_type').val();
     let valToAddRemove = $('#money_to_add_remove').val();
-    let conversionToCP = parseInt(valToAddRemove)*parseInt(multiplicators[moneyToAddRemove]);
+    let conversionToCP = parseInt(valToAddRemove) * parseInt(moneyTypes[moneyToAddRemove]);
 
     // Add Or Remove
     let newTotalCP = totalPC + conversionToCP;
