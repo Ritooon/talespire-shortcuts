@@ -29,7 +29,7 @@ function getOption(money)
 function loadMoney()
 {
     let calculator = `
-    <div class="p-0 m-0 card text-white bg-secondary m-3">
+    <div class="p-0 m-0 card text-white bg-secondary">
         <div class="card-header text-center">
             <h2><img src="assets/img/money-bag.png"> <span class="translated" data-trans="calculator_fn"></span></h2>
         </div>
