@@ -10,7 +10,7 @@ function getInput(money)
 {
     const nbPieces = !isNaN(parseInt(localStorage.getItem(money))) ? parseInt(localStorage.getItem(money)) : 0;
     return (`
-        <div class="col">
+        <div class="m-2">
             <h4>
                 <span>${getCoin(money, '54px')}</span>
                 <span data-trans="${money}" class="translated valign-middle"></span>
@@ -29,7 +29,7 @@ function getOption(money)
 function loadMoney()
 {
     let calculator = `
-    <div class="p-0 m-0 card text-white bg-secondary m-3">
+    <div class="p-0 m-0 card text-white bg-secondary">
         <div class="card-header text-center">
             <h2><img src="assets/img/money-bag.png"> <span class="translated" data-trans="calculator_fn"></span></h2>
         </div>
@@ -45,7 +45,7 @@ function loadMoney()
                     <span>${getCoin("pp")} = ${getCoin("ep")}x20</span>
                 </div>
             </div>
-        <div class="row text-center">
+        <div class="d-flex flex-wrap justify-content-center">
             ${Object.keys(moneyTypes).map(getInput).join('')}
         </div>
 
