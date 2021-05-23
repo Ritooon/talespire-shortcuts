@@ -45,7 +45,7 @@ function bindActions()
         }
 
         const diceValue = $(this).attr('data-dice')
-        window.open(`talespire://dice/attack:d'${diceValue}${modificator}`);
+        window.open(`talespire://dice/attack:d${diceValue}${modificator}`);
     });
 }
 
