@@ -12,7 +12,31 @@ var arrayLanguages = {
         'money_more_less' : 'Add or remove money',
         'simulate': 'Simulate',
         'validate': 'Validate',
-        'reminder': 'Reminder'
+        'reminder': 'Reminder',
+        'strength': 'Strength',
+        'charisma': 'Charisma',
+        'wisdom': 'Wisdom',
+        'intelligence': 'Intelligence',
+        'dexterity': 'Dexterity',
+        'constitution': 'Constitution',
+        'accrobatics': 'Accrobatics',
+        'stealth': 'Stealth',
+        'thievery': 'Thievery',
+        'athletism': 'Athletism',
+        'arcana': 'Arcana',
+        'history': 'History',
+        'investigation': 'Investigation',
+        'nature': 'Nature',
+        'religion': 'Religion',
+        'dressage': 'Dressage',
+        'heal': 'Heal',
+        'perception': 'Perception',
+        'insight': 'Insight',
+        'survival': 'Survival',
+        'intimidate': 'Intimidate',
+        'persuasion': 'Persuasion',
+        'streetwise': 'Streetwise',
+        'bluff': 'Bluff',
     },
     'fr': {
         'shortcut_list': 'Liste des raccourcis',
@@ -27,12 +51,33 @@ var arrayLanguages = {
         'money_more_less' : 'Ajouter ou retirer de la monnaie',
         'simulate': 'Simuler',
         'validate': 'Valider',
-        'reminder': 'Rappel'
+        'reminder': 'Rappel',
+        'strength': 'Force',
+        'charisma': 'Charisme',
+        'wisdom': 'Sagesse',
+        'intelligence': 'Intelligence',
+        'dexterity': 'Dextérité',
+        'constitution': 'Constitution',
+        'accrobatics': 'Acrobaties',
+        'stealth': 'Discrétion',
+        'thievery': 'Escamotage',
+        'athletism': 'Athlétisme',
+        'arcana': 'Arcanes',
+        'history': 'Histoire',
+        'investigation': 'Investigation',
+        'nature': 'Nature',
+        'religion': 'Religion',
+        'dressage': 'Dressage',
+        'heal': 'Médecine',
+        'perception': 'Perception',
+        'insight': 'Perspicacité',
+        'survival': 'Survie',
+        'intimidate': 'Intimidation',
+        'persuasion': 'Persuasion',
+        'streetwise': 'Représentation',
+        'bluff': 'Tromperie',
     }
 }
-
-// Carteristics array - Global
-var arrayCaracteristics = [];
 
 //
 var language = (localStorage.getItem('lang') == null || localStorage.getItem('lang') == 'en') ? 'en' : 'fr';
@@ -43,33 +88,15 @@ function displayLanguage()
     {
         $('#english-switch').css('display', 'none');
         $('#french-switch').css('display', 'inline-block');
-
-        arrayCaracteristics = [
-            {'carac': 'strength', 'name': 'Strength'},
-            {'carac': 'dexterity', 'name': 'Dexterity'},
-            {'carac': 'constitution', 'name': 'Constitution'},
-            {'carac': 'intelligence', 'name': 'Intelligence'},
-            {'carac': 'wisdom', 'name': 'Wisdom'},
-            {'carac': 'charisma', 'name': 'Charisma'}
-        ];
     }
     else
     {
         $('#english-switch').css('display', 'inline-block');
         $('#french-switch').css('display', 'none');
-
-        arrayCaracteristics = [
-            {'carac': 'strength', 'name': 'Force'},
-            {'carac': 'dexterity', 'name': 'Dextérité'},
-            {'carac': 'constitution', 'name': 'Constitution'},
-            {'carac': 'intelligence', 'name': 'Intelligence'},
-            {'carac': 'wisdom', 'name': 'Sagesse'},
-            {'carac': 'charisma', 'name': 'Charisme'}
-        ];
     }
 
+
     loadMenu();
-    loadCaracteristics();
 
     $('.translated').each(function(){
         let transKey = $(this).attr('data-trans');

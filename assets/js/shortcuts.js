@@ -1,26 +1,43 @@
+var arrayCaracteristics = [
+    {
+        'carac': 'strength', 
+        'name': 'Force', 
+        'translation': 'strength',
+        'sub_carac': ['athletism',]
+    },
+    {
+        'carac': 'dexterity', 
+        'name': 'Dextérité', 
+        'translation': 'dexterity',
+        'sub_carac': ['accrobatics', 'stealth', 'thievery']},
+    {
+        'carac': 'constitution', 
+        'name': 'Constitution', 
+        'translation': 'constitution',
+        'sub_carac': []},
+    {
+        'carac': 'intelligence', 
+        'name': 'Intelligence', 
+        'translation': 'intelligence',
+        'sub_carac': ['arcana', 'history', 'investigation', 'nature', 'religion']
+    },
+    {
+        'carac': 'wisdom', 
+        'name': 'Sagesse', 
+        'translation': 'wisdom',
+        'sub_carac': ['dressage','heal','perception','insight','survival']
+    },
+    {
+        'carac': 'charisma', 
+        'name': 'Charisme',
+        'translation': 'charisma',
+        'sub_carac': ['intimidate', 'persuasion', 'streetwise', 'bluff']
+    }
+];
+
 function loadCaracteristics()
 {
-    $('#shortcuts-container').html('');
-
-    const caraBlocks = arrayCaracteristics.map(({name, carac}) => {
-        return (`
-            <div class="p-0 m-0 card text-white bg-secondary">
-                <div class="card-header text-center"><img src="assets/img/${carac}.png" /> ${name}
-                    <input type="text" id="${carac}-mod" placeholder="Mod." class="modificator" />
-                </div>
-                <div class="d-flex justify-content-center flex-wrap card-body text-center">
-                    <a class="launch-dice" data-type="${carac}" data-dice="4"><img src="assets/img/d4.svg" class="d4-color" /></a>
-                    <a class="launch-dice" data-type="${carac}" data-dice="6"><img src="assets/img/d6.svg" class="d6-color" /></a>
-                    <a class="launch-dice" data-type="${carac}" data-dice="8"><img src="assets/img/d8.svg" class="d8-color" /></a>
-                    <a class="launch-dice" data-type="${carac}" data-dice="10"><img src="assets/img/d10.svg" class="d10-color" /></a>
-                    <a class="launch-dice" data-type="${carac}" data-dice="12"><img src="assets/img/d12.svg" class="d12-color" /></a>
-                    <a class="launch-dice" data-type="${carac}" data-dice="20"><img src="assets/img/d20.svg" class="d20-color" /></a>
-                </div>
-            </div>
-        `)
-    });
-    $('#shortcuts-container').append(caraBlocks);
-
+    displayLanguage();
     bindActions();
     loadModificators();
 }
@@ -33,7 +50,10 @@ function bindActions()
 
     $('.launch-dice').off('click').on('click', function(){
         const modValue = $(this).attr('data-type');
-        let modificator = parseInt($(`#${modValue}-mod`).val());
+        const skillSelected = $('input[name="'+modValue+'-radio"]:checked').attr('id');
+        let modificator = parseInt($('#'+skillSelected.replace('-radio', '')+'-mod').val());
+
+        console.log(modificator);
 
         if(isNaN(modificator))
         {
@@ -51,7 +71,11 @@ function bindActions()
 
 function loadModificators()
 {
-    arrayCaracteristics.forEach(({carac}) => {
+    arrayCaracteristics.forEach(({carac, sub_carac}) => {
         $(`#${carac}-mod`).val(localStorage.getItem(`${carac}-mod`));
+
+        for (let i = 0; i < sub_carac.length; i++) {
+            $('#'+sub_carac[i]+'-mod').val(localStorage.getItem(sub_carac[i]+'-mod'));
+        }
     });
 }

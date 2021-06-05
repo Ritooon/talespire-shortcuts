@@ -57,7 +57,7 @@
     height: 40px;
 }
 
-#shortcuts-container input {
+#shortcuts-container input:not(.form-check-input) {
     width: 40px;
     background: transparent;
     color: white;

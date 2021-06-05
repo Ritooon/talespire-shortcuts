@@ -26,6 +26,7 @@ function show_menu()
         $('#shortcuts-container').css('display', 'flex');
         $('#money-container').css('display', 'none');
         $('h1').attr('data-trans', 'shortcut_list');
+        $('#shortcuts-container').load('functionnalities/shortcuts.html', loadCaracteristics);
     } else if(functionnality == 'money') {
         $('#money-container').css('display', 'flex');
         $('#shortcuts-container').css('display', 'none');
